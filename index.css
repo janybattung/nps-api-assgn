@@ -1,0 +1,53 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    font-family: 'Helvetica', sans-serif;
+    color: black;
+    background-color: rgb(255, 255, 195);
+  }
+  
+  h1 {
+    margin-top: 5%;
+  }
+
+  .search {
+      font-size: 18px;
+  }
+
+  #js-state {
+    width: 30%;
+    color: rgb(167, 167, 167);
+  }
+  .js-result {
+      width: 10%;
+  }
+  
+  .container {
+    text-align: center;
+    margin: auto;
+    width: 65%;
+    height: 100%;
+  }
+  
+  .button {
+    margin-top: 2%;
+    height: 40px;
+    width: 20%;
+    background-color: gray;
+    font-size: 16px;
+    color: white;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  input {
+    width: 35%;
+    height: 30px;
+  }
