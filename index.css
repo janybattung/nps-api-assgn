@@ -21,7 +21,7 @@
 
   #js-state {
     width: 30%;
-    color: rgb(167, 167, 167);
+    font-weight: bold;
   }
   .js-result {
       width: 10%;

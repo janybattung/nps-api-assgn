@@ -7,7 +7,11 @@ function getParks(states, maxResults) {
     .then(response => response.json())
     .then(responseJson =>
         displayResults(responseJson))
-    .catch(error => console.log(error));
+    .catch(error => {console.log(error);
+        $('.result-parks').empty();
+        $('.result-parks').append(`<h2>An error has occured. Try again later.</h2>`);
+    });
+
 }
 
 function displayResults(responseJson) {
@@ -18,12 +22,16 @@ function displayResults(responseJson) {
     } else {
       resultsTotal = responseJson.total;
     }
-
+    $('.result-parks').empty(); //show messages over and over again
+    if (resultsTotal == 0) {
+        $('.result-parks').append(`<h2>Something went wrong. Try again.</h2>`);
+        return
+    }
         console.log(responseJson);
-        $('.result-parks').empty();
+        
         for (let index=0; index<resultsTotal; index++) {
             console.log("index" + index);
-            let address = responseJson.data[index].addresses.length>0?`
+            const address = responseJson.data[index].addresses.length>0?`
             <p>${responseJson.data[index].addresses[0].city?responseJson.data[index].addresses[0].city:""}</p>
             <p>${responseJson.data[index].addresses[0].line2}</p>
             <p>${responseJson.data[index].addresses[0].stateCode}</p>
@@ -41,8 +49,8 @@ function displayResults(responseJson) {
 function watchForm() {
     $('form').submit(event => {
         event.preventDefault();
-        let state = $('#js-state').val();
-        let max = $('#js-maxResults').val();
+        const state = $('#js-state').val();
+        const max = $('#js-maxResults').val();
         console.log(state);
         console.log(max);
         getParks(state, max);
