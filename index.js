@@ -17,20 +17,21 @@ function getParks(states, maxResults) {
 function displayResults(responseJson) {
 
     let resultsTotal = 0;
-    if (responseJson.total > responseJson.limit) {
+    if (parseInt(responseJson.total) > parseInt(responseJson.limit)) {
       resultsTotal = responseJson.limit;
+      
     } else {
       resultsTotal = responseJson.total;
+      
     }
     $('.result-parks').empty(); //show messages over and over again
     if (resultsTotal == 0) {
         $('.result-parks').append(`<h2>Something went wrong. Try again.</h2>`);
         return
     }
-        console.log(responseJson);
         
         for (let index=0; index<resultsTotal; index++) {
-            console.log("index" + index);
+            
             const address = responseJson.data[index].addresses.length>0?`
             <p>${responseJson.data[index].addresses[0].city?responseJson.data[index].addresses[0].city:""}</p>
             <p>${responseJson.data[index].addresses[0].line2}</p>
@@ -51,13 +52,12 @@ function watchForm() {
         event.preventDefault();
         const state = $('#js-state').val();
         const max = $('#js-maxResults').val();
-        console.log(state);
-        console.log(max);
+        
         getParks(state, max);
     });
 }
 
 $(function() {
-    console.log('App loaded! Waiting for submit!');
+    
     watchForm();
 })
